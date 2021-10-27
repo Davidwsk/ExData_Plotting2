@@ -2,9 +2,14 @@
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
-pm25PerYear <- tapply(NEI$Emissions, NEI$year, sum)
+pm25.1 <- tapply(NEI$Emissions, NEI$year, sum)
 
-pm25DF <- data.frame(year=names(pm25PerYear), Emissions=pm25PerYear)
+pm25.df <- data.frame(year=names(pm25.1), Emissions=pm25.1)
 
 # Display plot
-plot(pm25DF$year, pm25DF$Emissions, type="l", ylab="Total PM2.5 emission", xlab="Year")
+
+png("plot1.png")
+
+plot(pm25.df$year, pm25.df$Emissions, type="l", ylab="Total PM2.5 emission", xlab="Year")
+
+dev.off()
